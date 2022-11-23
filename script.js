@@ -9,7 +9,11 @@ let generateAdvice = async () => {
 
     try {
   
-      const response = await fetch(base_url);
+      let response = await fetch(base_url);
+      let data = await response.json();
+      console.log(data);
+      adviseId.innerText = `#${data.slip.id}`;
+      adviseText.innerText = `"${data.slip.advice}"`;
   
       console.log(response);
   
@@ -20,3 +24,5 @@ let generateAdvice = async () => {
     }
   
   };
+
+  generateButton.addEventListener("click", generateAdvice);
